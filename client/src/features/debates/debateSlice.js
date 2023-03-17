@@ -17,10 +17,12 @@ const debateSlice = apiSlice.injectEndpoints({
 					: initialState;
 			},
 			providesTags: (result, error, arg) => {
-				return result? [
-					{ type: "Debate", id: "LIST" },
-					...result?.ids.map((id) => ({ type: "Debate", id })),
-				]: [];
+				return result
+					? [
+							{ type: "Debate", id: "LIST" },
+							...result?.ids.map((id) => ({ type: "Debate", id })),
+					  ]
+					: [];
 			},
 		}),
 		getDebate: builder.query({
@@ -64,6 +66,13 @@ const debateSlice = apiSlice.injectEndpoints({
 				}
 			},
 		}),
+		deleteDebate: builder.mutation({
+			query: (debateId) => ({
+				url: `/debates/${debateId}`,
+				method: "DELETE",
+			}),
+			invalidatesTags: [{ type: "Debate", id: "LIST" }],
+		}),
 	}),
 });
 
@@ -72,4 +81,5 @@ export const {
 	useAddNewDebateMutation,
 	useVoteDebateMutation,
 	useGetDebateQuery,
+	useDeleteDebateMutation,
 } = debateSlice;

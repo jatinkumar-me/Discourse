@@ -22,7 +22,11 @@ import AddVote from "~/components/AddVote";
 import ItemMenu from "~/components/ItemMenu";
 import ProfilePicture from "~/components/ProfilePicture";
 import TimeAgo from "~/components/TimeAgo";
-import { useVoteDebateMutation, useGetDebatesQuery } from "./debateSlice";
+import {
+	useVoteDebateMutation,
+	useGetDebatesQuery,
+	useDeleteDebateMutation,
+} from "./debateSlice";
 
 function DebatesExcerpt({ debateId, params }) {
 	const { debate, isLoading } = useGetDebatesQuery(params, {
@@ -32,6 +36,7 @@ function DebatesExcerpt({ debateId, params }) {
 	});
 	const [addVote] = useVoteDebateMutation();
 	const bg = useColorModeValue("white", "whiteAlpha.50");
+	const [deleteDebate] = useDeleteDebateMutation();
 	if (isLoading) return;
 	const {
 		userId: user,
@@ -43,6 +48,13 @@ function DebatesExcerpt({ debateId, params }) {
 		votes,
 		_id,
 	} = debate;
+	const onDelete = async () => {
+		try {
+			await deleteDebate(debateId).unwrap()
+		} catch (error) {
+			throw error;
+		}
+	}
 
 	return (
 		<Card mb={"4"} px="4" py="4" bg={bg}>
@@ -72,7 +84,7 @@ function DebatesExcerpt({ debateId, params }) {
 							</Box>
 						</Flex>
 
-						<ItemMenu userId={user._id} />
+						<ItemMenu userId={user._id} menuFor="Debate" onDelete={onDelete}/>
 					</Flex>
 				</CardHeader>
 
