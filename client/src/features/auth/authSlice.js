@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { PURGE } from "redux-persist";
 
 const initialState = {
 	user: null,
@@ -18,7 +19,7 @@ export const authSlice = createSlice({
 			const { picture } = action.payload;
 			state.user.picture = picture;
 		},
-		logout: () => initialState,
+		logout: () => initialState
 	},
 });
 

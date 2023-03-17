@@ -11,7 +11,7 @@ import {
 	PURGE,
 	REGISTER,
 } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import storage  from "redux-persist/lib/storage";
 
 const rootReducers = combineReducers({
 	[apiSlice.reducerPath]: apiSlice.reducer,
@@ -21,6 +21,7 @@ const persistConfig = {
 	key: "root",
 	storage,
 	version: 1,
+	blacklist: [apiSlice.reducerPath],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);

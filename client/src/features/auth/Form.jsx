@@ -25,6 +25,7 @@ import {
 	Spinner,
 	Heading,
 	Divider,
+	useToast,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
@@ -68,6 +69,8 @@ function Form() {
 	const navigate = useNavigate();
 	const { state } = useLocation();
 
+	const toast = useToast(); 
+
 	const handleFormSubmit = async (values, onSubmitProps) => {
 		if (isLogin) handleLogin(values);
 		else handleRegister(values);
@@ -81,7 +84,12 @@ function Form() {
 			if (state) navigate(state.prev);
 			else navigate("/");
 		} catch (err) {
-			console.log(err);
+			console.error(err);
+			toast({
+				title: "Error",
+				description: err?.data.msg,
+				status: "error",
+			})
 		}
 	};
 	const handleRegister = async (values) => {
@@ -90,6 +98,7 @@ function Form() {
 			setFormType("login");
 		} catch (err) {
 			console.log(err);
+
 		}
 	};
 

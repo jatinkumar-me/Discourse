@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link as NavLink, useNavigate } from "react-router-dom";
 import { logout, selectCurrentUser } from "~/features/auth/authSlice";
 import {
@@ -18,12 +18,13 @@ import {
 } from "@chakra-ui/react";
 import StyleColorMode from "./StyleColorMode";
 import { FaGithub, FaHome } from "react-icons/fa";
-import ProfilePicture from "../ProfilePicture";
+// import ProfilePicture from "../ProfilePicture";
 import { UnlockIcon } from "@chakra-ui/icons";
 import CurrentUserPicture from "~/features/users/CurrentUserPicture";
 
 function Navbar() {
 	const user = useSelector(selectCurrentUser);
+	const dispatch = useDispatch();
 	let fullName, userId;
 	if (user) {
 		const { firstName, lastName, _id } = user;
@@ -81,9 +82,9 @@ function Navbar() {
 											colorScheme={"gray"}
 											rightIcon={<UnlockIcon />}
 											onClick={() => {
-												logout();
+												dispatch(logout());
 												navigate("/login");
-												navigate(0);
+												// navigate(0);
 											}}
 										>
 											Logout
