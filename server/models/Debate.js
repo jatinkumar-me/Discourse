@@ -60,7 +60,9 @@ debateSchema.pre(
 	"findOneAndDelete",
 	{ document: true, query: true },
 	async function (next) {
-		await Argument.deleteMany({ debateId: this._conditions._id });
+		const argument = await Argument.find({ debateId: this._conditions._id });
+    	await Promise.all(argument.map(child => Argument.findByIdAndDelete(child._id)));
+		// await Argument.deleteMany({ debateId: this._conditions._id });
 		next();
 	}
 );
