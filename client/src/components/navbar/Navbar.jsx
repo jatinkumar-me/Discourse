@@ -18,7 +18,6 @@ import {
 } from "@chakra-ui/react";
 import StyleColorMode from "./StyleColorMode";
 import { FaGithub, FaHome } from "react-icons/fa";
-// import ProfilePicture from "../ProfilePicture";
 import { UnlockIcon } from "@chakra-ui/icons";
 import CurrentUserPicture from "~/features/users/CurrentUserPicture";
 
@@ -84,7 +83,6 @@ function Navbar() {
 											onClick={() => {
 												dispatch(logout());
 												navigate("/login");
-												// navigate(0);
 											}}
 										>
 											Logout

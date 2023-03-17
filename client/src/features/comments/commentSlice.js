@@ -81,4 +81,5 @@ export const {
 	useAddCommentsMutation,
 	useVoteCommentMutation,
 	useAddReplyMutation,
+	useDeleteCommentMutation,
 } = commentSlice;

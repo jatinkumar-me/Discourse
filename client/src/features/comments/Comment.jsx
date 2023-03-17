@@ -4,6 +4,7 @@ import ProfilePicture from "~/components/ProfilePicture";
 import TimeAgo from "~/components/TimeAgo";
 import {
 	useAddReplyMutation,
+	useDeleteCommentMutation,
 	useGetCommentsQuery,
 	useVoteCommentMutation,
 } from "./commentSlice";
@@ -11,17 +12,9 @@ import CommentAndReplyForm from "./CommentAndReplyForm";
 
 import { VscChevronDown, VscChevronUp, VscComment } from "react-icons/vsc";
 import Reply from "./Reply";
-import {
-	Box,
-	Button,
-	Divider,
-	Flex,
-	HStack,
-	IconButton,
-	Text,
-} from "@chakra-ui/react";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { Box, Button, Divider, Flex, HStack, Text } from "@chakra-ui/react";
 import FullName from "~/components/FullName";
+import ItemMenu from "~/components/ItemMenu";
 
 function Comment({ commentId, argumentId }) {
 	const { comment } = useGetCommentsQuery(argumentId, {
@@ -31,6 +24,7 @@ function Comment({ commentId, argumentId }) {
 	});
 	const [addVote] = useVoteCommentMutation();
 	const [addReply, { isLoading }] = useAddReplyMutation();
+	const [deleteComment] = useDeleteCommentMutation();
 
 	const [showReplies, setShowReplies] = useState(false);
 	const [showReplyForm, setShowReplyForm] = useState(false);
@@ -38,6 +32,26 @@ function Comment({ commentId, argumentId }) {
 
 	const { content, userId: user, createdAt, replies, votes } = comment;
 	const { _id: userId, firstName, lastName } = user;
+
+	const onDelete = async () => {
+		try {
+			await deleteComment({ commentId, argumentId });
+		} catch (error) {
+			throw error;
+		}
+	}
+
+	const onPost = async (content) => {
+		try {
+			await addReply({ commentId, argumentId, content }).unwrap();
+		} catch (err) {
+			console.error("Failed to reply", err);
+		}
+	}
+
+	const onVote = async (vote, curUserId) => {
+		addVote({ commentId, argumentId, curUserId, vote });
+	}
 
 	return (
 		<div>
@@ -62,12 +76,10 @@ function Comment({ commentId, argumentId }) {
 					</Box>
 				</Flex>
 
-				<IconButton
-					isRound
-					variant="ghost"
-					colorScheme="gray"
-					aria-label="See menu"
-					icon={<BsThreeDotsVertical />}
+				<ItemMenu
+					userId={userId}
+					onDelete={onDelete}
+					menuFor="Comment"
 				/>
 			</Flex>
 			<Text size={"sm"} mb={2}>
@@ -78,9 +90,7 @@ function Comment({ commentId, argumentId }) {
 				<AddVote
 					votes={votes}
 					size="xs"
-					onVote={(vote, curUserId) => {
-						addVote({ commentId, argumentId, curUserId, vote });
-					}}
+					onVote={onVote}
 				/>
 
 				<Button
@@ -108,13 +118,7 @@ function Comment({ commentId, argumentId }) {
 					<CommentAndReplyForm
 						isLoading={isLoading}
 						formType="reply"
-						onPost={async (content) => {
-							try {
-								await addReply({ commentId, argumentId, content }).unwrap();
-							} catch (err) {
-								console.error("Failed to reply", err);
-							}
-						}}
+						onPost={onPost}
 					/>
 				)}
 
