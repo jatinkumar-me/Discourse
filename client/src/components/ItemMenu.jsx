@@ -12,6 +12,7 @@ import {
 	MenuItem,
 	MenuList,
 	useDisclosure,
+	useToast,
 } from "@chakra-ui/react";
 import { useRef } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
@@ -24,14 +25,28 @@ import {
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "~/features/auth/authSlice";
 
-function ItemMenu({ userId, onDelete, onEdit}) {
+function ItemMenu({ userId, onDelete, onEdit, menuFor }) {
 	const curUser = useSelector(selectCurrentUser);
 	let isCurUser = false;
 	if (curUser && curUser._id === userId) isCurUser = true;
+	const toast = useToast()
 
-	const handleDelete = () => {
-		onDelete();
-		onClose();
+	const handleDelete = async () => {
+		try {
+			await onDelete();
+			toast({
+				title: "Deleted",
+				description: `${menuFor || "Post"} deleted successfully`,
+				status: "info",
+			});
+		} catch (error) {
+			toast({
+				title: "Failed to delete",
+				status: "error",
+			});
+		} finally {
+			onClose();
+		}		
 	};
 
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -51,8 +66,16 @@ function ItemMenu({ userId, onDelete, onEdit}) {
 					<MenuItem icon={<RiShareForward2Line />}>Share</MenuItem>
 					{isCurUser && (
 						<>
-							<MenuItem icon={<RiEdit2Line />} onClick={onEdit}>Edit</MenuItem>
-							<MenuItem icon={<RiDeleteBin6Line />} onClick={onOpen} >Delete</MenuItem>
+							{onEdit && (
+								<MenuItem icon={<RiEdit2Line />} onClick={onEdit}>
+									Edit
+								</MenuItem>
+							)}
+							{onDelete && (
+								<MenuItem icon={<RiDeleteBin6Line />} onClick={onOpen}>
+									Delete
+								</MenuItem>
+							)}
 						</>
 					)}
 					<MenuItem icon={<RiFlag2Line />}>Report</MenuItem>

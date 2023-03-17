@@ -95,17 +95,8 @@ function Argument({ argumentId, debateId }) {
 	const handleDelete = async () => {
 		try {
 			await deleteArgument({ debateId, argumentId }).unwrap();
-			toast({
-				title: "Deleted",
-				description: "Post deleted successfully",
-				status: "info",
-			});
 		} catch (error) {
-			console.error(error);
-			toast({
-				title: "Failed to delete",
-				status: "error",
-			});
+			throw error;
 		}
 	};
 
@@ -168,6 +159,7 @@ function Argument({ argumentId, debateId }) {
 								userId={user._id}
 								onDelete={handleDelete}
 								onEdit={() => setIsInEditMode(!isInEditMode)}
+								menuFor="Argument"
 							/>
 						</Flex>
 					</CardHeader>
