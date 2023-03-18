@@ -93,7 +93,7 @@ function ItemMenu({ userId, onDelete, onEdit, menuFor }) {
 							Confirm Delete
 						</AlertDialogHeader>
 
-						<AlertDialogBody>Permanently delete this post?</AlertDialogBody>
+						<AlertDialogBody>Permanently delete this {`${menuFor}`}?</AlertDialogBody>
 
 						<AlertDialogFooter>
 							<Button size={"sm"} ref={cancelRef} onClick={onClose}>

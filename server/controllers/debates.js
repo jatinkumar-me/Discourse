@@ -1,6 +1,11 @@
 import Debate from "../models/Debate.js";
 import User from "../models/user.js";
 
+/* 
+// TODO:
+1. add updateDebate route.
+*/
+
 export const createDebate = async (req, res) => {
 	try {
 		const { title, description, tags } = req.body;
