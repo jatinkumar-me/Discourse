@@ -1,6 +1,6 @@
 import Argument from "../models/Argument.js";
 import Comment from "../models/Comment.js";
-import User from "../models/user.js";
+import User from "../models/User.js";
 
 export const createComment = async (req, res) => {
 	try {

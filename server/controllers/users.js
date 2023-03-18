@@ -1,5 +1,5 @@
 import { deleteImage, getImage } from "../middleware/uploadMiddleware.js";
-import User from "../models/user.js";
+import User from "../models/User.js";
 
 export const updateProfilePicture = async (req, res) => {
 	try {
