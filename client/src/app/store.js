@@ -35,6 +35,7 @@ const createStore = (options) =>
 					ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
 				},
 			}).concat(apiSlice.middleware),
+			devTools: import.meta.env.VITE_ENV === "DEV",
 		...options,
 	});
 export const store = createStore();
