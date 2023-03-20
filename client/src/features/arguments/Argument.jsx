@@ -123,7 +123,7 @@ function Argument({ argumentId, debateId }) {
 				mb={"4"}
 				px="4"
 				py="4"
-				bg={useColorModeValue("white", "whiteAlpha.50")}
+				bg={useColorModeValue("white", "gray.900")}
 			>
 				<VStack align={"baseline"} divider={<Divider />}>
 					<CardHeader py={1} width="full" px={0}>

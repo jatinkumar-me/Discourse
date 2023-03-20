@@ -31,7 +31,6 @@ function Debate() {
 	const { debateId } = useParams();
 	const { data: debate, isLoading, isError } = useGetDebateQuery(debateId);
 	const curUser = useSelector(selectCurrentUser);
-	const bgColor = useColorModeValue("white", "whiteAlpha.50");
 
 	let content;
 	if (isLoading) content = <PostSkeleton />;
@@ -40,7 +39,7 @@ function Debate() {
 		const { userId: user, title, description, createdAt, tags } = debate;
 		content = (
 			<>
-				<Card my={"4"} px="4" py="1" bg={bgColor}>
+				<Card my={"4"} px="4" py="1" >
 					<VStack align={"baseline"}>
 						<CardHeader py={0} width="full" px={0}>
 							<Flex spacing="1" justify={"space-between"}>

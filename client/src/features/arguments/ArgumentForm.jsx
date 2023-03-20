@@ -116,7 +116,7 @@ function ArgumentForm({
 					/>
 				</div>
 			</Box>
-			<Flex justify={"flex-end"}>
+			<Flex justify={"flex-end"} mb="2">
 				{isEditForm && (
 					<Button
 						variant={"solid"}

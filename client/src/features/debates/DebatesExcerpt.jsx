@@ -35,7 +35,7 @@ function DebatesExcerpt({ debateId, params }) {
 		},
 	});
 	const [addVote] = useVoteDebateMutation();
-	const bg = useColorModeValue("white", "whiteAlpha.50");
+	const bg = useColorModeValue("white", "gray.900");
 	const [deleteDebate] = useDeleteDebateMutation();
 	if (isLoading) return;
 	const {
