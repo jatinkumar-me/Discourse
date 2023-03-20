@@ -15,6 +15,7 @@ import {
 	useColorModeValue,
 	Heading,
 	Divider,
+	Link,
 } from "@chakra-ui/react";
 import StyleColorMode from "./StyleColorMode";
 import { FaGithub, FaHome } from "react-icons/fa";
@@ -39,16 +40,18 @@ function Navbar() {
 						<Heading fontSize="xl">Discourse</Heading>
 					</Box>
 					<Divider height={8} orientation="vertical" />
-					<NavLink to="/">
-						<IconButton
-							aria-label="home"
-							variant="ghost"
-							size="sm"
-							icon={<FaHome />}
-						/>
-					</NavLink>
 					<IconButton
+						as={NavLink}
+						to="/"
 						aria-label="home"
+						variant="ghost"
+						size="sm"
+						icon={<FaHome />}
+					/>
+					<IconButton
+						aria-label="github"
+						as={Link}
+						href="https://github.com/jatinkumar-me/Discourse"
 						variant="ghost"
 						size="sm"
 						icon={<FaGithub />}
@@ -92,8 +95,14 @@ function Navbar() {
 							</MenuList>
 						</Menu>
 					) : (
-						<Button variant={"solid"} colorScheme="blue" size="sm">
-							<NavLink to="/login">Login</NavLink>
+						<Button
+							as={NavLink}
+							to="/login"
+							variant={"solid"}
+							colorScheme="blue"
+							size="sm"
+						>
+							Login
 						</Button>
 					)}
 				</Flex>
