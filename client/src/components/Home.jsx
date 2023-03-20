@@ -4,9 +4,9 @@ import DebateForm from "~/features/debates/DebateForm";
 import Debates from "~/features/debates/Debates";
 
 function Home() {
-	const [sortBy, setSortBy] = useState('createdAt')
+	const [sortBy, setSortBy] = useState('-createdAt')
 	return (
-		<Container maxW="3xl">
+		<Container maxW="3xl" px={"8px"}>
 			<DebateForm />
 			<Box>
 				<Flex align={"flex-end"} justify="space-between" gap={2} my="3">
