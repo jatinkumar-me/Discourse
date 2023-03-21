@@ -9,7 +9,7 @@ function LoginPage() {
 				<Heading lineHeight={"9"} fontSize={"6xl"}>
 					Discourse
 				</Heading>
-				<Text fontSize={"sm"}>
+				<Text fontSize={"sm"} textAlign="center">
 					A place to share your knowledge and ideas with the world
 				</Text>
 			</VStack>
