@@ -52,6 +52,7 @@ function Navbar() {
 						aria-label="github"
 						as={Link}
 						href="https://github.com/jatinkumar-me/Discourse"
+						target="_blank"
 						variant="ghost"
 						size="sm"
 						icon={<FaGithub />}
