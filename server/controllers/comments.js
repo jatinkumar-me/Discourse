@@ -32,8 +32,8 @@ export const getComments = async (req, res) => {
 					select: "firstName lastName picture createdAt _id",
 				},
 			});
-		if(!argumentsData) {
-			return res.status(404).json({msg: "Not found"})
+		if (!argumentsData) {
+			return res.status(404).json({ msg: "Not found" });
 		}
 		res.status(200).json(argumentsData.comments);
 	} catch (err) {
@@ -92,15 +92,13 @@ export const addReply = async (req, res) => {
 export const deleteReply = async (req, res) => {
 	try {
 		const { commentId, replyId } = req.params;
-		const comment = await Comment.findById(commentId);
-		let { replies } = comment;
-		const { userId } = req.body;
-		replies = replies.filter(
-			(reply) => reply._id !== replyId || reply.userId.toString() !== userId
-		);
-		comment.replies = replies;
-		await comment.save();
-		res.status(200).json(comment);
+		const { userId } = req.user;
+		await Comment.findByIdAndUpdate(commentId, {
+			$pull: {
+				replies: { userId, _id: replyId },
+			},
+		});
+		res.status(204).json({});
 	} catch (err) {
 		res.status(400).json({ error: err.message });
 	}

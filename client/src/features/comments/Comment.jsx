@@ -125,7 +125,7 @@ function Comment({ commentId, argumentId }) {
 				{showReplies && (
 					<>
 						{replies.map((reply) => (
-							<Reply reply={reply} key={reply._id} />
+							<Reply reply={reply} key={reply._id} argumentId={argumentId} commentId={commentId}/>
 						))}
 					</>
 				)}
