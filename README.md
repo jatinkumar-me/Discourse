@@ -9,3 +9,12 @@ The application also provides a user profile page where you can customize your p
 ## Conclusion:
 
 Discourse is a simple yet powerful open-source discussion platform built with the MERN stack. Its easy installation process and user-friendly interface make it a good choice for anyone looking to create a community discussion platform.
+
+## Todo: 
+
+1. Add messaging feature.
+   1. Add messaging backend using socket.io
+   2. Implement messaging feature on frontend.
+2. Add 'follow user' feature.
+3. Implement notifications.
+4. ~~Add delete reply feature~~
