@@ -3,6 +3,8 @@
 ## ⚠ Known Issue: 
 App may take a while **(20 seconds or more)** on first load. The reason for this is Render.com spins down the server after 15 minutes of inactivity. 
 
+[screen-capture (2).webm](https://github.com/jatinkumar-me/Discourse/assets/85551434/648f6869-6a6e-49ea-bfcd-155f10cad91b)
+
 ## 💪 Usage:
 
 Once you have the application running, you can create an account by clicking on the "Register" button on the top right corner of the screen. After registering, you can log in and start creating discussions by clicking on the "Create Discussion" button. You can also participate in existing discussions by leaving comments and upvoting or downvoting them.
