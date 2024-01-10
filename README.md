@@ -3,7 +3,7 @@
 ## ⚠ Known Issue: 
 App may take a while **(20 seconds or more)** on first load. The reason for this is Render.com spins down the server after 15 minutes of inactivity. 
 
-[screen-capture (2).webm](https://github.com/jatinkumar-me/Discourse/assets/85551434/648f6869-6a6e-49ea-bfcd-155f10cad91b)
+<video width="320" height="240" controls src="https://github.com/jatinkumar-me/Discourse/assets/85551434/648f6869-6a6e-49ea-bfcd-155f10cad91b"/>
 
 ## 💪 Usage:
 
