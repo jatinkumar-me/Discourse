@@ -3,7 +3,7 @@
 ## ⚠ Known Issue: 
 App may take a while **(20 seconds or more)** on first load. The reason for this is Render.com spins down the server after 15 minutes of inactivity. 
 
-<video width="400" controls src="https://github.com/jatinkumar-me/Discourse/assets/85551434/648f6869-6a6e-49ea-bfcd-155f10cad91b"/>
+
 
 ## 💪 Usage:
 
@@ -23,3 +23,5 @@ Discourse is a simple yet powerful open-source discussion platform built with th
 2. Add 'follow user' feature.
 3. Implement notifications.
 4. ~~Add delete reply feature~~
+
+<video width="400" controls src="https://github.com/jatinkumar-me/Discourse/assets/85551434/648f6869-6a6e-49ea-bfcd-155f10cad91b" />
