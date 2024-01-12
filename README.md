@@ -16,4 +16,4 @@ The application also provides a user profile page where you can customize your p
 Discourse is a simple yet powerful open-source discussion platform built with the MERN stack. Its easy installation process and user-friendly interface make it a good choice for anyone looking to create a community discussion platform.
 
 
-<video width="400" controls src="https://github.com/jatinkumar-me/Discourse/assets/85551434/648f6869-6a6e-49ea-bfcd-155f10cad91b" />
+<video controls src="https://github.com/jatinkumar-me/Discourse/assets/85551434/648f6869-6a6e-49ea-bfcd-155f10cad91b" />
